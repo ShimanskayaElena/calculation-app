@@ -1,0 +1,79 @@
+<div class="row">
+<div class="col">
+<form *ngIf="data | async"  [formGroup]="initialForm" novalidate>
+  <div class="form-group">   
+    <label class="center-block">Введите число зубьев шестерни:
+      <input class="form-control" type="text" formControlName="z1" placeholder="*">
+    </label>
+      
+    <div class="alert alert-danger" *ngIf="initialForm.controls.z1.invalid && (initialForm.controls.z1.dirty || initialForm.controls.z1.touched)">
+      <div *ngIf="initialForm.controls.z1.errors.required">
+        Введите, пожалуйста, число зубьев шестерни
+      </div>
+      <div *ngIf="initialForm.controls.z1.errors.min">
+        При заданном значении числа зубьев шестерни расчёт согласно требований ГОСТ 19624-74 произвести нельзя. Количество зубьев шестерни должно быть больше либо равно 12. 
+      </div>
+      <div *ngIf="initialForm.controls.z1.errors.numberTeethValidator">
+        Расчёт согласно требований ГОСТ 19624-74 произвести нельзя. См. таблицу 1 приложения 1 к ГОСТ. 
+      </div>
+    </div>
+      
+    <label class="center-block">Введите число зубьев колеса:
+      <input class="form-control" type="text" formControlName="z2" placeholder="*">
+    </label>
+      
+    <div class="alert alert-danger" *ngIf="initialForm.controls.z2.invalid && (initialForm.controls.z2.dirty || initialForm.controls.z2.touched)">
+      <div *ngIf="initialForm.controls.z2.errors.required">
+        Введите, пожалуйста, число зубьев колеса
+      </div>
+      <div *ngIf="initialForm.controls.z2.errors.numberTeethValidator">
+        Расчёт согласно требований ГОСТ 19624-74 произвести нельзя. См. таблицу 1 приложения 1 к ГОСТ. 
+      </div>
+    </div>
+      
+    <label class="center-block">Введите внешний окружной модуль:
+      <input class="form-control" type="text" formControlName="Me" placeholder="*.***">
+    </label>
+      
+    <div class="alert alert-danger" *ngIf="initialForm.controls.Me.invalid && (initialForm.controls.Me.dirty || initialForm.controls.Me.touched)">
+      <div *ngIf="initialForm.controls.Me.errors.required">
+        Введите, пожалуйста, внешний окружной модуль
+      </div>
+      <div *ngIf="initialForm.controls.Me.errors.min">
+        При заданном значении модуля передачи расчёт согласно требований ГОСТ 19624-74 произвести нельзя. Внешний окружной модуль  должен быть больше либо равен 1.
+      </div>
+    </div>
+      
+    <label class="center-block">Введите межосевой угол передачи (в градусах):
+      <input class="form-control" type="text" formControlName="E" placeholder="*.**">
+    </label>
+      
+    <div class="alert alert-danger" *ngIf="initialForm.controls.E.invalid && (initialForm.controls.E.dirty || initialForm.controls.E.touched)">
+      <div *ngIf="initialForm.controls.E.errors.required">
+        Введите, пожалуйста, межосевой угол передачи
+      </div>
+      <div *ngIf="initialForm.controls.E.errors.min">
+        При заданном значении межосевого угла передачи расчёт согласно требований ГОСТ 19624-74 произвести нельзя. Межосевой угол  должен быть больше либо равен 10.
+      </div>
+      <div *ngIf="initialForm.controls.E.errors.max">
+        При заданном значении межосевого угла передачи расчёт согласно требований ГОСТ 19624-74 произвести нельзя. Межосевой угол  должен быть меньше либо равен 170.
+      </div>
+    </div>
+      
+    <div class="button">
+      <button class="btn" type="reset">Очистить форму ввода</button>
+      <button class="btn btn-default" type="submit"  (click)="calculation()" [disabled]="initialForm.invalid">
+        Выполнить вычисления
+      </button>
+    </div>
+      
+  </div>
+</form>
+</div>
+</div>
+      <!--<p>Число зубьев шестерни: {{initialForm.controls.z1.value}}  {{initialForm.get('z1').value}}</p>
+      <p>число зубьев колеса: {{initialForm.get('z2').value}}</p>
+      <p>внешний окружной модуль: {{initialForm.get('Me').value}}</p>
+      <p>межосевой угол передачи: {{initialForm.get('E').value}}</p>
+      <p>Form Status: {{initialForm.status | json}}</p>
+      <p>Form value: {{initialForm.value | json}}</p>-->

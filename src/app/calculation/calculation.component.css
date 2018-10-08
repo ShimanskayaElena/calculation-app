@@ -1,0 +1,36 @@
+li {
+    list-style-type: none;
+}
+
+span {
+    font-size: 8px;
+}
+
+.select {
+  text-align: center;
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+table {
+    border-spacing: 0;
+   }
+   td, th {
+     vertical-align: top;
+     border: 1px solid black;
+     border-right: none;
+     border-bottom: none;
+     padding: 4px 8px;
+   }
+ 
+ td[rowspan] {
+   border-bottom: 1px solid black;
+ }
+
+   tr:last-child td, tr:first-child td:first-child {
+     border-bottom: 1px solid black;
+   }
+
+   td:last-child, th:last-child {
+     border-right: 1px solid black;
+   }
