@@ -2,6 +2,19 @@
     background-color: #e0eaee;
 }
 
+h1 {
+    color: #82d5ee;
+}
+
+h4, h5 {
+    color: #31b9dc;
+}
+
+.navbar-nav {
+   color: black;
+    background-color:  #82d5ee;
+}
+
 .hide {
     display: none;
 }

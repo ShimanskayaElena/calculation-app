@@ -1,68 +1,68 @@
 <div class="row">
-    <div class="col">
-        <h4 class="mat-h4">Результаты вычислений:</h4>
+    <div class="col-8 offset-1 pl-5">
+        <h5 class="pl-5">Результаты вычислений:</h5>
     </div>
 </div>
 <div class="row">
-    <div class="col">
-        <ul *ngIf="data | async">
-          <li>число зубьев шестерни Z<span>1</span> = {{Z1}}</li>
-          <li>число зубьев колеса Z<span>2</span> = {{Z2}}</li>
-          <li>внешний окружной модуль Me = {{Me}}</li>
-          <li>межосевой угол передачи &#931; = {{Eg}}&#730;</li>
-          <li *ngIf="Zc && details">1. число зубьев плоского колеса = {{Zc}}</li>
-          <li>2. внешнее конусное расстояние Re = {{Re}} мм</li>
-          <li>3. ширина зубчатого венца b = {{b}} мм</li>
-          <li>4. угол делительного конуса шестерни &#948;<span>1</span> = {{v1.g}}&#730;{{v1.m}}&#712;</li>
-          <li>5. угол делительного конуса колеса &#948;<span>2</span> = {{v3.g}}&#730;{{v3.m}}&#712;</li>
-          <li *ngIf="u">6. передаточное число u = {{u}}</li>
-          <li *ngIf="uvb">7. передаточное число эквивалентной конической передачи (если межосевой угол передачи не равен 90 градусам) u<span>vb</span> = {{uvb}}</li>
-          <li *ngIf="Zvb && details">8. число зубьев эквивалентной конической шестерни (если межосевой угол передачи не равен 90 градусам) Z<span>vb</span> = {{Zvb}}</li>
-          <li *ngIf="x1">9. коэффициент смещения шестерни x<span>1</span> = {{x1}}</li>
-          <li *ngIf="x2">10. коэффициент смещения колеса x<span>2</span> = {{x2}}  </li>
-          <li *ngIf="x1">11. коэффициент изменения расчётной толщины зуба шестерни (при u >= 2,5) x<span>&#964;1</span> = {{xt1}}</li>
-          <li *ngIf="x2">12. коэффициент изменения расчётной толщины зуба колеса (при u >= 2,5) x<span>&#964;2</span> = {{xt2}}</li>
-          <li *ngIf="hae1 && details">13. внешняя высота головки зуба шестерни h<span>ae1</span> = {{hae1}}</li>
-          <li *ngIf="hae2 && details">14. внешняя высота головки зуба колеса h<span>ae2</span> = {{hae2}}</li>
-          <li *ngIf="hfe1 && details">15. внешняя высота ножки зуба шестерни h<span>fe1</span> = {{hfe1}}</li>
-          <li *ngIf="hfe2 && details">16. внешняя высота ножки зуба колеса h<span>fe2</span> = {{hfe2}}</li>
-          <li *ngIf="he1 && details">17. внешняяя высота зуба шестерни h<span>e1</span> = {{he1}}</li>
-          <li *ngIf="he2 && details">18. внешняя высота зуба колеса h<span>e2</span> = {{he2}}</li>
-          <li *ngIf="Se1 && details">19. внешняя окружная толщина зуба шестерни S<span>e1</span> = {{Se1}}</li>
-          <li *ngIf="Se2 && details">20. внешняя окружная толина зуба колеса S<span>e2</span> = {{Se2}}</li>
-          <li *ngIf="Qf1 && details">21. угол ножки зуба шестерни &#920;<span>f1</span> = {{Qf1.g}}&#730;{{Qf1.m}}&#712;</li>
-          <li *ngIf="Qf2 && details">22. угол ножки зуба колеса &#920;<span>f2</span> = {{Qf2.g}}&#730;{{Qf2.m}}&#712;</li>
-          <li *ngIf="Qa1 && details">23. угол головки зуба шестерни &#920;<span>a1</span> = {{Qa1.g}}&#730;{{Qa1.m}}&#712;</li>
-          <li *ngIf="Qa2 && details">24. угол головки зуба колеса &#920;<span>a2</span> = {{Qa2.g}}&#730;{{Qa2.m}}&#712;</li>
-          <li *ngIf="ba1">25. угол конуса вершин шестерни &#948;<span>a1</span> = {{ba1.g}}&#730;{{ba1.m}}&#712;</li>
-          <li *ngIf="ba1">26. угол конуса вершин колеса &#948;<span>a2</span> = {{ba2.g}}&#730;{{ba2.m}}&#712;</li>
-          <li *ngIf="ba1">27. угол конуса впадин шестерни &#948;<span>f1</span> = {{bf1.g}}&#730;{{bf1.m}}&#712;</li>
-          <li *ngIf="ba1">28. угол конуса впадин колеса &#948;<span>f2</span> = {{bf2.g}}&#730;{{bf2.m}}&#712;</li>
-          <li *ngIf="de1 && details">29. внешний делительный диаметр шестерни d<span>e1</span> = {{de1}}</li>
-          <li *ngIf="de2 && details">30. внешний делительный диаметр колеса d<span>e2</span> = {{de2}}</li>
-          <li *ngIf="dae1">31. внешний диаметр вершин зубьев шестерни d<span>ae1</span> = {{dae1}} мм</li>
-          <li *ngIf="dae2">32. внешний диаметр вершин зубьев колеса d<span>ae2</span> = {{dae2}} мм</li>
-          <li *ngIf="B1">33. расстояние от вершины до плоскости внешней окружности вершин зубьев шестерни B<span>1</span> = {{B1}} мм</li>
-          <li *ngIf="B2">34. расстояние от вершины до плоскости внешней окружности вершин зубьев колеса B<span>2</span> = {{B2}} мм</li>
-          <li *ngIf="we1 && details">35. половина внешней угловой толщины зуба шестерни &#936;<span>e1</span> = {{we1}}</li>
-          <li *ngIf="we2 && details">36. половина внешней угловой толщины зуба колеса &#936;<span>e2</span> = {{we2}}</li>
-          <li *ngIf="se1">37. внешняя делительная толщина зуба шестерни по хорде S`<span>e1</span> = {{se1}} мм</li>
-          <li *ngIf="Hae1">38. высота до внешней делительной хорды зуба шестерни h`<span>ae1</span> = {{Hae1}} мм</li>
-          <li *ngIf="se2">39. внешняя делительная толщина зуба колеса по хорде S`<span>e2</span> = {{se2}} мм (при x<span>1</span> &#60;&#61; 0,4 )</li>
-          <li *ngIf="dye2">диаметр концентрической окружности d<span>ye2</span> = {{dye2}} мм</li>
-          <li *ngIf="Sye2">внешняя делительная толщина зуба колеса по хорде на концентрической окружности S`<span>ye2</span> = {{Sye2}} мм (при x<span>1</span> &#62; 0,4 )</li>
+    <div class="col-8 offset-2">
+        <ul *ngIf="data | async" class="list-group list-group-flush">
+          <li class="list-group-item">число зубьев шестерни Z<span>1</span> = {{Z1}}</li>
+          <li class="list-group-item">число зубьев колеса Z<span>2</span> = {{Z2}}</li>
+          <li class="list-group-item">внешний окружной модуль Me = {{Me}}</li>
+          <li class="list-group-item">межосевой угол передачи &#931; = {{Eg}}&#730;</li>
+          <li class="list-group-item grey" *ngIf="Zc && details">число зубьев плоского колеса = {{Zc}}</li>
+          <li class="list-group-item">внешнее конусное расстояние Re = {{Re}} мм</li>
+          <li class="list-group-item">ширина зубчатого венца b = {{b}} мм</li>
+          <li class="list-group-item">угол делительного конуса шестерни &#948;<span>1</span> = {{v1.g}}&#730;{{v1.m}}&#712;</li>
+          <li class="list-group-item">угол делительного конуса колеса &#948;<span>2</span> = {{v3.g}}&#730;{{v3.m}}&#712;</li>
+          <li class="list-group-item" *ngIf="u">передаточное число u = {{u}}</li>
+          <li class="list-group-item" *ngIf="uvb">передаточное число эквивалентной конической передачи (если межосевой угол передачи не равен 90 градусам) u<span>vb</span> = {{uvb}}</li>
+          <li class="list-group-item grey" *ngIf="Zvb && details">число зубьев эквивалентной конической шестерни (если межосевой угол передачи не равен 90 градусам) Z<span>vb</span> = {{Zvb}}</li>
+          <li class="list-group-item" *ngIf="x1">коэффициент смещения шестерни x<span>1</span> = {{x1}}</li>
+          <li class="list-group-item" *ngIf="x2">коэффициент смещения колеса x<span>2</span> = {{x2}}  </li>
+          <li class="list-group-item" *ngIf="x1">коэффициент изменения расчётной толщины зуба шестерни (при u >= 2,5) x<span>&#964;1</span> = {{xt1}}</li>
+          <li class="list-group-item" *ngIf="x2">коэффициент изменения расчётной толщины зуба колеса (при u >= 2,5) x<span>&#964;2</span> = {{xt2}}</li>
+          <li class="list-group-item grey" *ngIf="hae1 && details">внешняя высота головки зуба шестерни h<span>ae1</span> = {{hae1}}</li>
+          <li class="list-group-item grey" *ngIf="hae2 && details">внешняя высота головки зуба колеса h<span>ae2</span> = {{hae2}}</li>
+          <li class="list-group-item grey" *ngIf="hfe1 && details">внешняя высота ножки зуба шестерни h<span>fe1</span> = {{hfe1}}</li>
+          <li class="list-group-item grey" *ngIf="hfe2 && details">внешняя высота ножки зуба колеса h<span>fe2</span> = {{hfe2}}</li>
+          <li class="list-group-item grey" *ngIf="he1 && details">внешняяя высота зуба шестерни h<span>e1</span> = {{he1}}</li>
+          <li class="list-group-item grey" *ngIf="he2 && details">внешняя высота зуба колеса h<span>e2</span> = {{he2}}</li>
+          <li class="list-group-item grey" *ngIf="Se1 && details">внешняя окружная толщина зуба шестерни S<span>e1</span> = {{Se1}}</li>
+          <li class="list-group-item grey" *ngIf="Se2 && details">внешняя окружная толина зуба колеса S<span>e2</span> = {{Se2}}</li>
+          <li class="list-group-item grey" *ngIf="Qf1 && details">угол ножки зуба шестерни &#920;<span>f1</span> = {{Qf1.g}}&#730;{{Qf1.m}}&#712;</li>
+          <li class="list-group-item grey" *ngIf="Qf2 && details">угол ножки зуба колеса &#920;<span>f2</span> = {{Qf2.g}}&#730;{{Qf2.m}}&#712;</li>
+          <li class="list-group-item grey" *ngIf="Qa1 && details">угол головки зуба шестерни &#920;<span>a1</span> = {{Qa1.g}}&#730;{{Qa1.m}}&#712;</li>
+          <li class="list-group-item grey" *ngIf="Qa2 && details">угол головки зуба колеса &#920;<span>a2</span> = {{Qa2.g}}&#730;{{Qa2.m}}&#712;</li>
+          <li class="list-group-item" *ngIf="ba1">угол конуса вершин шестерни &#948;<span>a1</span> = {{ba1.g}}&#730;{{ba1.m}}&#712;</li>
+          <li class="list-group-item" *ngIf="ba1">угол конуса вершин колеса &#948;<span>a2</span> = {{ba2.g}}&#730;{{ba2.m}}&#712;</li>
+          <li class="list-group-item" *ngIf="ba1">угол конуса впадин шестерни &#948;<span>f1</span> = {{bf1.g}}&#730;{{bf1.m}}&#712;</li>
+          <li class="list-group-item" *ngIf="ba1">угол конуса впадин колеса &#948;<span>f2</span> = {{bf2.g}}&#730;{{bf2.m}}&#712;</li>
+          <li class="list-group-item grey" *ngIf="de1 && details">внешний делительный диаметр шестерни d<span>e1</span> = {{de1}}</li>
+          <li class="list-group-item grey" *ngIf="de2 && details">внешний делительный диаметр колеса d<span>e2</span> = {{de2}}</li>
+          <li class="list-group-item" *ngIf="dae1">внешний диаметр вершин зубьев шестерни d<span>ae1</span> = {{dae1}} мм</li>
+          <li class="list-group-item" *ngIf="dae2">внешний диаметр вершин зубьев колеса d<span>ae2</span> = {{dae2}} мм</li>
+          <li class="list-group-item" *ngIf="B1">расстояние от вершины до плоскости внешней окружности вершин зубьев шестерни B<span>1</span> = {{B1}} мм</li>
+          <li class="list-group-item" *ngIf="B2">расстояние от вершины до плоскости внешней окружности вершин зубьев колеса B<span>2</span> = {{B2}} мм</li>
+          <li class="list-group-item grey" *ngIf="we1 && details">половина внешней угловой толщины зуба шестерни &#936;<span>e1</span> = {{we1}}</li>
+          <li class="list-group-item grey" *ngIf="we2 && details">половина внешней угловой толщины зуба колеса &#936;<span>e2</span> = {{we2}}</li>
+          <li class="list-group-item" *ngIf="se1">внешняя делительная толщина зуба шестерни по хорде S`<span>e1</span> = {{se1}} мм</li>
+          <li class="list-group-item" *ngIf="Hae1">высота до внешней делительной хорды зуба шестерни h`<span>ae1</span> = {{Hae1}} мм</li>
+          <li class="list-group-item" *ngIf="se2">внешняя делительная толщина зуба колеса по хорде S`<span>e2</span> = {{se2}} мм (при x<span>1</span> &#60;&#61; 0,4 )</li>
+          <li class="list-group-item" *ngIf="dye2">диаметр концентрической окружности d<span>ye2</span> = {{dye2}} мм</li>
+          <li class="list-group-item" *ngIf="Sye2">внешняя делительная толщина зуба колеса по хорде на концентрической окружности S`<span>ye2</span> = {{Sye2}} мм (при x<span>1</span> &#62; 0,4 )</li>
         </ul>
     </div>
 </div>
 
 <div *ngIf="!invisible" class="row select">
-    <div class="col-12">
+    <div class="col my-3">
       В зависимости от заданного числа зубьев шестерни Z<span>1</span> и рассчитанного передаточного числа u выберите из таблицы соответствующее им значение коэффициента смещения Х. Для этого необходимо щёлкнуть мышкой по выбранному значению.
     </div>
-  <div class="col">
+  <div class="col-11 offset-1 my-3">
       <h6>Таблица коэффициентов смещения Х<span>1</span>, если &#931; &#8800; 90&#730; (передача неортогональная) вместо Z<span>1</span> и u использовать Z<span>vb</span> и u<span>vb</span></h6>
   </div>
-  <div class="col">
+  <div class="col-10 offset-1">
       <table>
           <tr>
             <td rowspan="2">Число зубьев шестерни Z<span>1</span>(Z<span>vh</span>)</td>
@@ -89,11 +89,11 @@
         </table>
   </div>
 </div>
-<div class="row">
-  <div class="col">
-      <button mat-button color = "primary" (click)="showDetails()">Показать промежуточные результаты</button>
+<div class="row mt-5">
+  <div class="col text-center">
+      <button class="btn" (click)="showDetails()">Показать промежуточные результаты</button>
   </div>
-  <div class="col">
-      <button mat-button color = "primary" (click)="goToForm()">Выполнить новый расчёт</button>
+  <div class="col text-center">
+      <button class="btn" (click)="goToForm()">Выполнить новый расчёт</button>
   </div>
 </div>

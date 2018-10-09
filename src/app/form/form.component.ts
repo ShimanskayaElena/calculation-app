@@ -33,14 +33,15 @@ export class FormComponent implements OnInit {
     this.data.subscribe( data => {
       this.createForm(data);
     });
+    
   }
 
   createForm( initialData: InitialData[] ): void {
     const i = initialData.length - 1; // определяем индеск последней записи в БД
 
     this.initialForm = new FormGroup({
-      z1: new FormControl( initialData[i].z1, { validators: [Validators.required, Validators.min(12), this.numberTeethValidator()]}),
-      z2: new FormControl( initialData[i].z2, { validators: [Validators.required, this.numberTeethValidator()]}),
+      z1: new FormControl( initialData[i].z1, { validators: [Validators.required, Validators.min(10), Validators.max(60), this.numberTeethValidator()]}),
+      z2: new FormControl( initialData[i].z2, { validators: [Validators.required, Validators.min(10), Validators.max(1000), this.numberTeethValidator()]}),
       Me: new FormControl( initialData[i].Me, { validators: [Validators.required, Validators.min(1)]}),
       E: new FormControl( initialData[i].E, { validators: [Validators.required, Validators.min(10), Validators.max(170)]})
     }, { updateOn: 'blur' } ); // для повышения производительности

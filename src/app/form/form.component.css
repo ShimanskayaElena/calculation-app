@@ -1,0 +1,17 @@
+input.ng-invalid {
+    border: red 1px solid;
+}
+
+.alert {
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+label {
+    font-size: 0.9rem;
+}
+
+.btn {
+    background-color:  #82d5ee;
+    color: #fff;
+}

@@ -1,27 +1,26 @@
-<div class="container">
-  <div class="row">
+<div class="container pb-5">
+  <div class="row mb-3">
     <div class="col">
-      <h1>
+      <h1 class="text-center">
         Добро пожаловать в приложение "Расчёты"!
       </h1>
     </div>
   </div>
-  <div class="row">
+  <div class="row my-3">
     <div class="col">
-      <h4>
-        Передачи зубчатые конические с прямыми зубьями. Расчёт геометрии согласно ГОСТ 19624-74.
-      </h4>
+      <h4 class="text-center">Передачи зубчатые конические с прямыми зубьями</h4>
+      <h5 class="text-center">Расчёт геометрии согласно ГОСТ 19624-74</h5>
     </div>
   </div>
-  <div class="row">
+ <!-- <div class="row">
     <div class="col">
-      <nav class="navbar" role="navigation">
-        <a class="btn" routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Форма</a>
-        <a class="btn" routerLink="./calculation" routerLinkActive="active">Расчёты</a>
+      <nav class="navbar justify-content-center" role="navigation">
+        <a class="btn navbar-nav mx-1 px-5" routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" role="navigation">Ввод данных</a>
+        <a class="btn navbar-nav mx-1 px-5" routerLink="./calculation" routerLinkActive="active" role="navigation">Результаты вычислений</a>
       </nav>
     </div>
-  </div>
-  <div class="row">
+  </div>-->
+  <div class="row pb-5">
     <div class="col">
       <router-outlet></router-outlet>
     </div>

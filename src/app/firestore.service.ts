@@ -4,7 +4,6 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs';
 
 import { InitialData } from './model/initialData';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +12,7 @@ export class FirestoreService {
   dataCol: AngularFirestoreCollection<InitialData>;
   data: Observable<InitialData[]>; // данные, полученные из БД Firestore
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore) {}
 
   get(): Observable<InitialData[]> {
     this.dataCol = this.afs.collection('data'); // 'data' - имя коллекции в Firebase
