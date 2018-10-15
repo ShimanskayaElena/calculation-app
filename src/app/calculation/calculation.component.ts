@@ -24,14 +24,16 @@ export class CalculationComponent implements OnInit {
   Z2: number; // число зубьев колеса
   Me: number; // внешний окружной модуль
   Eg: number; // межосевой угол передачи в градусах
-  E: number; // межосевой угол передачи в радианах
+  Er: number; // межосевой угол передачи в радианах
   Zc: number; // число зубьев плоского колеса
   Re: number; // внешнее конусное расстояние
   b: number; // ширина зубчатого венца
-  v: number; // угол делительного конуса шестерни в градусах
+  vr: number; // угол делительного конуса шестерни в радианах
+  vg: number; // угол делительного конуса шестерни в градусах
   v1: number; // угол делительного конуса шестерни в градусах - отформатированный результат
-  v2: number; // угол делительного конуса колеса в градусах
-  v3: number; // отформатированный угол делительного конуса колеса в градусах
+  Vr: number; // угол делительного конуса колеса в радианах
+  Vg: number; // угол делительного конуса колеса в градусах
+  v2: number; // угол делительного конуса колеса в градусах - отформатированный результат
   u: number; // передаточное число (для межосевого угла передачи, равного 90 градусам)
   uvb: number; // передаточное число эквивалентной конической передачи (если межосевой угол передачи не равен 90 градусам)
   Zvb: number; // число зубьев эквивалентной конической шестерни (если межосевой угол передачи не равен 90 градусам)
@@ -86,10 +88,11 @@ export class CalculationComponent implements OnInit {
       this.Zc = this.function_1();
       this.Re = this.function_2();
       this.b = this.function_3();
-      this.v = this.function_4(); 
-      this.v1 = this.getDegrees(this.v);
-      this.v2 = (this.Eg - this.v);
-      this.v3 = this.function_6();
+      this.vg = this.function_4(); 
+      this.v1 = this.getDegrees(this.vg);
+      this.Vr = (this.Er - this.vr);
+      this.Vg = this.Vr * 180 / Math.PI;
+      this.v2 = this.getDegrees(this.Vg);
       this.u = this.function_7();
       this.uvb = this.function_8();
       this.Zvb = this.function_9();
@@ -102,7 +105,7 @@ export class CalculationComponent implements OnInit {
     this.Z2 = initialData[i].z2;
     this.Me = initialData[i].Me;
     this.Eg = initialData[i].E; // в градусах
-    this.E = this.fixPrecision( this.Eg * Math.PI / 180, 4); // в радианах
+    this.Er = this.fixPrecision( this.Eg * Math.PI / 180, 4); // в радианах
   }
 
   showDetails(): boolean {
@@ -129,18 +132,18 @@ export class CalculationComponent implements OnInit {
     this.Qf2 = this.function_20(this.hfe2,);
     this.Qa1 = this.Qf1;
     this.Qa2 = this.Qf2;
-    this.ba1 = this.function_21(this.v, this.hfe2);
-    this.ba2 = this.function_21(this.v2, this.hfe1);
-    this.bf1 = this.function_22(this.v, this.hfe1);
-    this.bf2 = this.function_22(this.v2, this.hfe2);
+    this.ba1 = this.function_21(this.vg, this.hfe2);
+    this.ba2 = this.function_21(this.Vg, this.hfe1);
+    this.bf1 = this.function_22(this.vg, this.hfe1);
+    this.bf2 = this.function_22(this.Vg, this.hfe2);
     this.de1 = this.function_23(this. Z1, this.Me);
     this.de2 = this.function_23(this. Z2, this.Me);
-    this.dae1 = this.function_24(this.de1, this.hae1, this.v);
-    this.dae2 = this.function_24(this.de2, this.hae2, this.v2);
-    this.B1 = this.function_25(this.Re, this.v, this.hae1);
-    this.B2 = this.function_25(this.Re, this.v2, this.hae2);
-    this.we1 = this.function_26(this.Se1, this.v, this.de1);
-    this.we2 = this.function_26(this.Se2, this.v2, this.de2);
+    this.dae1 = this.function_24(this.de1, this.hae1, this.vr);
+    this.dae2 = this.function_24(this.de2, this.hae2, this.Vr);
+    this.B1 = this.function_25(this.Re, this.vr, this.hae1);
+    this.B2 = this.function_25(this.Re, this.Vr, this.hae2);
+    this.we1 = this.function_26(this.Se1, this.vr, this.de1);
+    this.we2 = this.function_26(this.Se2, this.Vr, this.de2);
     this.se1 = this.function_27();
     this.Hae1 = this.function_28();
     this.se2 = this.function_29();
@@ -150,8 +153,8 @@ export class CalculationComponent implements OnInit {
 
   // определение числа зубьев плоского колеса
   function_1(): number {
-    const a = Math.pow(this.Z1, 2) + Math.pow(this.Z2, 2) + 2 * this.Z1 * this.Z2 * Math.cos(this.Eg);
-    const b = Math.sqrt(a) / Math.sin(this.Eg);
+    const a = Math.pow(this.Z1, 2) + Math.pow(this.Z2, 2) + 2 * this.Z1 * this.Z2 * Math.cos(this.Er);
+    const b = Math.sqrt(a) / Math.sin(this.Er);
     return this.fixPrecision(b, 0);
   }
 
@@ -166,22 +169,19 @@ export class CalculationComponent implements OnInit {
     const a = 0.3 * this.Re;
     const b = 10 * this.Me;
     if ( a <= b ) {
-      return this.fixPrecision(a, 0);
+      return this.fixPrecision(a, 2);
     } else {
-      return this.fixPrecision(b, 0);
+      return this.fixPrecision(b, 2);
     }
   }
 
   // определение угла делительного конуса шестерни в градусах
   function_4(): number {
-    const a = this.Z2 / this.Z1 + Math.cos(this.Eg);
-    return Math.atan( Math.sin(this.Eg) / a);
-  }
-
-  // определяем угол делительного конуса колеса в градусах и форматируем его
-  function_6(): any {
-    this.v2 = this.Eg - this.v; // в градусах
-    return this.getDegrees(this.v2); // форматируем результат
+    const a = this.Z2 / this.Z1 + Math.cos(this.Er);
+    const b = Math.sin(this.Er) / a;
+    this.vr =  Math.atan(b); // в радианах
+    this.vg = this.vr * 180 / Math.PI; // переводим в градусы
+    return this.vg;
   }
 
   // определяем передаточное число (для межосевого угла передачи, равного 90 градусам)
@@ -193,18 +193,16 @@ export class CalculationComponent implements OnInit {
   // определяем передаточное число эквивалентной конической передачи (если межосевой угол передачи не равен 90 градусам)
   function_8(): number {
     if ( +this.Eg !== 90) {
-      const c = Math.sqrt(this.u * Math.cos(this.v) / Math.cos(this.v2));
+      const c = Math.sqrt(this.u * Math.cos(this.vr) / Math.cos(this.Vr));
       return this.fixPrecision(c, 2);
     }
   }
 
   // определяем число зубьев эквивалентной конической шестерни (если межосевой угол передачи не равен 90 градусам)
   function_9(): number {
-
     this.invisible = false; // показываем таблицу коэффициентов смещения Х1
-
     if ( +this.Eg !== 90) {
-      const a =  this.Z1 / Math.cos(this.v);
+      const a =  this.Z1 / Math.cos(this.vr);
       const b = this.uvb / (Math.sqrt(1 + Math.pow(this.uvb, 2)));
       return this.fixPrecision((a * b), 0);
     }  
@@ -266,7 +264,7 @@ export class CalculationComponent implements OnInit {
 
   // определение внешней окружной толщины зуба шестерни
   function_18(): number {
-    const a = this.Me * ( 0.5 * Math.PI + 2 * this.x1 * Math.tan(20) + this.xt1);
+    const a = this.Me * ( 0.5 * Math.PI + 2 * this.x1 * Math.tan(20 * Math.PI / 180) + this.xt1);
     return this.fixPrecision(a, 4);
   }
 
@@ -278,19 +276,19 @@ export class CalculationComponent implements OnInit {
 
   // определение угла ножки зуба шестерни в градусах, аналогично определяется угол ножки зуба колеса в градусах
   function_20( hfei: number): any {
-    const a = Math.atan( hfei / this.Re);
-    return this.getDegrees(a); // форматируем результат
+    const a = Math.atan( hfei / this.Re);  // в радианах
+    return this.getDegrees(a * 180 / Math.PI); // форматируем результат
   }
 
   // определение угла конуса вершин шестерни (колеса) в градусах
   function_21 (v, hfe) {
-    const a = v + Math.atan( hfe / this.Re); // получаем значение угла конуса вершин шестерни (колеса) в градусах
+    const a = v + (Math.atan( hfe / this.Re) * 180 / Math.PI); // получаем значение угла конуса вершин шестерни (колеса) в градусах
     return this.getDegrees(a); // форматируем результат
   }
 
   // определение угла конуса впадин шестерни (колеса) в градусах
   function_22 (v, hfe) {
-    const a = v - Math.atan( hfe / this.Re); // получаем значение угла конуса впадин шестерни (колеса) в градусах
+    const a = v - (Math.atan( hfe / this.Re) * 180 / Math.PI); // получаем значение угла конуса впадин шестерни (колеса) в градусах
     return this.getDegrees(a); // форматируем результат
   }
 
@@ -319,7 +317,7 @@ export class CalculationComponent implements OnInit {
 
   // определение внешней делительной толщины зуба шестерни по хорде
   function_27 () {
-    const a = this.de1 * Math.sin( 180 * this.we1 / Math.PI) / Math.cos(this.v);
+    const a = this.de1 * Math.sin( this.we1) / Math.cos(this.vr);
     return this.fixPrecision(a, 4);
   }
 
@@ -330,21 +328,25 @@ export class CalculationComponent implements OnInit {
   }
 
   // определение внешней делительной толщины зуба колеса по хорде (при х1 <= 0,4)
-  function_29(): number {
-    const a = this.de2 * Math.sin(180 * this.we2 /  Math.PI) / Math.cos(this.v2);
-    return this.fixPrecision(a, 4);
+  function_29() {
+    if (this.x1 <= 0.4) {
+      const a = this.de2 / Math.cos(this.Vr) * Math.sin(this.we2);
+      return this.fixPrecision(a, 4);
+    }
   }
 
   // определение диаметра концентрической окружности
   function_30(): number {
-    const a = this.de2 - this.Me * Math.cos(this.v2);
+    const a = this.de2 - this.Me * Math.cos(this.Vr);
     return this.fixPrecision(a, 4);
   }
 
   // определение внешней делительной толщины зуба колеса по хорде на концентрической окружности (при х1 > 0,4)
-  function_31(): number {
-    const a = this.dye2 * Math.sin(180 * this.we2 / Math.PI) /  Math.cos(this.v2) + Math.tan(20) * this.Me;
-    return this.fixPrecision(a, 4);
+  function_31() {
+    if (this.x1 > 0.4) {
+      const a = this.dye2 / Math.cos(this.Vr)  * Math.sin(this.we2) + Math.tan(20 * Math.PI / 180) * this.Me;
+      return this.fixPrecision(a, 4);
+    }
   }
 
   // установление точности производимых расчётов, т.е. количества знаков после запятой
